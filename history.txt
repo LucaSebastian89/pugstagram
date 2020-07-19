@@ -102,3 +102,14 @@ si es true, se activa.
 tambien vamos a hacer algo parecido con el icono de bookmark, pero en este caso, no establecemos una funcion para cambiar el estado de la variable bookmark.
 sino q en el on:click, pasamos la funcion anonima que haga el trabajo de cambiarle el valor a la variable.
 
+Subiendo el proyecto con Netlify
+
+Y tenemos el proyecto subido a Github, ahora configuramos lo siguiente
+
+creamos el archivo netlify.toml, donde vamos a crear el script, que nos va a permitir menejar el compilado.
+
+debemos subir estos cambios a git. vamos a crear una nueva rama con git checkout -b (nombre de la rama)
+y los mandamos a una nueva rama del repositorio local. con git push origin (nombre de la rama).
+
+
+
