@@ -1,0 +1,104 @@
+Creacion de Pugstagram.
+
+-Elegimos la carpeta donde tendremos alojado el proyecto.
+
+-Inicializamos Git y Npm. git init, npm init.
+
+-Creamos las carpetas src, donde estara alojada la logica del proyecto, y la carpeta public.
+
+-En la carpeta src creamos el entry point, index.js
+
+
+Configuracion del entorno de trabajo. Vamos a trabajar con webpack y demas dependencias y configuraciones.
+
+-npm install svelte --save
+
+instalamos babel para poder transpilar nuestro codigo a cualquier navegador
+
+-npm i -D @babel/core @babel/polyfill @babel/preset-env babel-loader html-webpack-plugin svelte-loader webpack webpack-cli webpack-dev-server
+
+tambien instalamos las otras dependencias de desarrollo.
+webpack, webpack-cli, html-webpack-plugin.
+
+-Creamos el archivo con la configuracion de babel. .babelrc
+
+-Creamos el archivo con la configuracion de webpack. webpack.config.js
+    añadimos entry, output, resolve, modules, rules y plugins.
+
+-añadimos index.html a la carpeta public. con el formato inicial de html 5 y una etiqueta <main>.
+
+-creamos la carpeta containers con el componente entrada de nuestra aplicacion, App.svelte
+
+-añadimos la logica al archivo index.js ( la entrada de nuestro proyecto ) donde importaremos App, y crearemos app y lo empujaremos hacia el elemento main del Documento html
+para eso usamos el querySelector.
+
+-Creamos los Scripts "build" y "start".
+
+- Hago Commit.
+
+-Establecemos la estructura del proyecto.
+    Miramos los elementos que va a tener nuestro proyecto, donde indentificamos Header, Main, TimeLine y Sidebar.
+    creamos esos componentes en la carpeta components. y los añadimos a App.svelte.
+
+-Trabajamos con Header.
+    Creamos la estructura html del header, con los divs correspondientes. Identificamos la seccion del Logo, y el Nav.
+    En el Nav vamos a usar Fontawesome para los iconos. asi que nos creamos una cuenta en la pagina.
+    traemos el script para usar los iconos y lo pegamos en public/index.html.
+    luego de eso ya podemos usar el icono heart y user-alt 
+
+-Trabajamos con el Sidebar.
+    En sidebar vamos a usar 3 componentes, asi q los tenemos q crear y los tenemos que importar.
+    Profile, Stories y Footer. Creamos la estructura HTML de cada uno.
+
+Trabajamos en el TimeLine.
+    Creamos la estructura HTML del TimeLine, donde vamos a agregar un componente Card. Importamos este componente, lo creamos, y a continuacion escribimos su estructura.
+    Dentro de Card, identificamos el componente Comments, asi q lo importamos y lo creamos. Luego escribimos la estructura de Comments.
+
+Ya tenemos toda la Estructura creada, ahora toca trabajar en el Css.
+
+Traemos todo el CSS desde el gist de Github, solo copiamos y pegamos.
+
+-Ahora vamos a conectar con una API.
+
+Lo que hacemos es, en el componente App.svelte, importamos el metodo onMount, y es en el donde haremos el llamado a la API.
+
+Luego vamos pasando los datos que necesitamos a cada componente.
+
+-Componente Comments.svelte.
+
+creamos el on:submit del boton
+
+
+
+-Componente Modal.
+
+
+
+Vamos a implementar la opcion de compartir usando un Modal
+identificamos donde va a estar el Modal, en la parte superior de Card
+creamos el componente Modal
+creamos el componente Share.
+en Modal vamos a tener el div Modal, y el overlay, que va a oscurecer la pantalla y poner el focus en el Modal.
+luego ponemos el componente slot, para pasarle el componente hijo.
+En el componente Share vamos a tener un header con un titulo y un icono, al cual le vamos a añadir la accion de cerrar el modal.
+y un link con un icono, para compartir la pagina en Facebook.
+despues del deploy, vamos a actualizar el href con la direccion de nuestra pagina.
+
+añadimos los componentes a Card.
+Primero hacemos el handleClick, con la accion de abrir y cerrar el Modal, usando una variable boolean llamada isModal.
+cuando añadimos el componente Modal, vamos a hacer uso de las transiciones q provee svelte.
+realizamos un if para comprobar el estado de isModal.
+usamos Modal y Share, a este ultimo lo pasamos como prop el on:click={handleClick}
+y en el componente share, al icono de cerrar el modal, le pasamos on:click, este ya va a entender que viene con el valor handleClick como accion.
+
+
+Implementamos los Likes, vamos a darle esta funcionalidad a Pugstagram, la de poder dar like desde el icono de like, o haciendo doble click en la foto.
+tambien vamos a crear el store para implementar un contador de likes, des esta forma manejaremos el valor de likeCount desde el store.
+
+podemos manejar acciones sobre las clases de los elementos, en este caso lo hacemos con: 
+class:active-like={like}
+con esta linkea de codigo, vamos a determinar q al icono se le active la clase active-like de a cuerdo al valor q tenga like 
+si es true, se activa.
+tambien vamos a hacer algo parecido con el icono de bookmark, pero en este caso, no establecemos una funcion para cambiar el estado de la variable bookmark.
+sino q en el on:click, pasamos la funcion anonima que haga el trabajo de cambiarle el valor a la variable.
+
